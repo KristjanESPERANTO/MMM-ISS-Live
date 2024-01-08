@@ -1,4 +1,5 @@
-/* MagicMirror²
+/*
+ * MagicMirror²
  * Module: MMM-ISS-Live
  *
  * By Mykle1 - MIT Licensed
@@ -13,13 +14,13 @@ Module.register("MMM-ISS-Live", {
     updateInterval: 60 * 60 * 1_000,
     mute: true
   },
-  start() {
+  start () {
     setInterval(() => {
       this.updateDom(this.config.animationSpeed || 0);
     }, this.config.updateInterval);
   },
 
-  getDom() {
+  getDom () {
     const iframe = document.createElement("iframe");
     iframe.classList.add("iframe");
     iframe.style = "border: 0 none transparent";
@@ -36,7 +37,7 @@ Module.register("MMM-ISS-Live", {
   },
 
   /*  Add this function to the modules you want to control with voice */
-  notificationReceived(notification, payload) {
+  notificationReceived (notification, payload) {
     if (notification === "HIDE_STATION") {
       Log.log(`${this.name} received hide command: ${payload}`);
       this.hide(1_000);

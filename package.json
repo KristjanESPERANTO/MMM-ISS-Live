@@ -17,15 +17,15 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "eslint": "^8.55.0",
-    "eslint-config-canonical": "^42.8.0",
-    "eslint-plugin-markdownlint": "^0.5.0",
-    "markdownlint": "^0.32.1",
-    "prettier": "^3.1.0"
+    "@eslint/js": "latest",
+    "@stylistic/eslint-plugin": "latest",
+    "eslint": "^8.56.0",
+    "eslint-plugin-import": "latest",
+    "prettier": "^3.1.1"
   },
   "scripts": {
     "lint": "eslint . && && prettier --check .",
-    "lint:fix": "eslint --fix . && prettier --write .",
+    "lint:fix": "eslint . --fix && prettier . --write",
     "test": "npm run lint"
   }
 }
