@@ -36,12 +36,24 @@ The module is a live stream. These are still shots, obviously.
       header: "ISS Live Sream",   // With header
       position: "bottom left",
       config: {
+        url: "https://www.youtube.com/embed/VigTmsEGS18?si=VPG58XPgw9Bz6nvO", // Another video stream
         height: "540px",        // Double height than default
         width: "960px",         // Double width than default
         mute: false             // Sound enabled
       }
     },
 ```
+
+There are several video streams from the ISS on YouTube. To switch to another stream, you need to set the URL option as in the customised example above.
+
+- _LIVE: Overview Camera - View Earth from the International Space Station_
+  `"https://www.youtube.com/embed/VigTmsEGS18?si=VPG58XPgw9Bz6nvO"`
+- _LIVE: NASA Live Stream of Earth from Space (ISS)_
+  `"https://www.youtube.com/embed/xRPjKQtRXR8?si=zi-AnQaKiuwKkaLR"`
+- _Live High-Definition Views from the International Space Station (Official NASA Stream)_ - **Default**
+  `"https://www.youtube.com/embed/P9C25Un7xaM?si=MVmSwml-ecTsw_Tr"`
+
+**Side note:** _Basically you can use this module to embed any YouTube video. You only need to find out the empedded URL of the video and enter it as url option._
 
 ## Project status
 

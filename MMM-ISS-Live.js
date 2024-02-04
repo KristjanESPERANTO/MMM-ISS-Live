@@ -26,8 +26,12 @@ Module.register("MMM-ISS-Live", {
     iframe.style = "border: 0 none transparent";
     iframe.width = this.config.width;
     iframe.height = this.config.height;
-    iframe.src =
-      "https://www.youtube.com/embed/P9C25Un7xaM?si=MVmSwml-ecTsw_Tr&autoplay=1";
+
+    iframe.src = this.config.url
+      ? this.config.url
+      : "https://www.youtube.com/embed/P9C25Un7xaM?si=MVmSwml-ecTsw_Tr";
+
+    iframe.src += "&autoplay=1";
 
     if (this.config.mute) {
       iframe.src += "&mute=1";

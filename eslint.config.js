@@ -32,6 +32,7 @@ const config = [
       "no-await-in-loop": "off",
       "no-inline-comments": "off",
       "no-magic-numbers": "off",
+      "no-ternary": "off",
       "no-undef": "warn",
       "one-var": "off",
       "prefer-destructuring": "off",
