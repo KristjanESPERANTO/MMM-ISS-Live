@@ -15,7 +15,21 @@ The module is a live stream. These are still shots, obviously.
 
 ## Installation
 
-- `git clone https://github.com/KristjanESPERANTO/MMM-ISS-Live` into the `~/MagicMirror/modules` directory.
+Go to the directory where the modules are stored and download this module by using `git clone`:
+
+```bash
+cd ~/MagicMirror/modules
+git clone https://github.com/KristjanESPERANTO/MMM-ISS-Live
+```
+
+## Update
+
+Go to the module’s directory and pull the latest version from GitHub:
+
+```bash
+cd ~/MagicMirror/modules/MMM-ISS-Live
+git pull
+```
 
 ## Config.js entry and options
 
