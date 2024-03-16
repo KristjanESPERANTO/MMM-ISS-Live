@@ -31,7 +31,7 @@ cd ~/MagicMirror/modules/MMM-ISS-Live
 git pull
 ```
 
-## Config.js entry and options
+## Configuration
 
 ### Easy example
 
