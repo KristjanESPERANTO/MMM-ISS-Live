@@ -1,3 +1,5 @@
+/* global Log Module */
+
 /*
  * MagicMirror²
  * Module: MMM-ISS-Live
