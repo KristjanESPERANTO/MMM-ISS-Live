@@ -3,7 +3,7 @@ import eslintPluginJs from "@eslint/js";
 import eslintPluginStylistic from "@stylistic/eslint-plugin";
 import globals from "globals";
 
-export default [
+const config = [
   eslintPluginJs.configs.all,
   eslintPluginImportX.flatConfigs.recommended,
   {
@@ -69,3 +69,5 @@ export default [
     }
   }
 ];
+
+export default config;
