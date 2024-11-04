@@ -1,0 +1,7 @@
+{
+  "version": "0.2",
+  "language": "en",
+  "words": ["Kristjan", "livestream", "mykle"],
+  "ignorePaths": ["node_modules/**", "translations/**"],
+  "dictionaries": ["node"]
+}

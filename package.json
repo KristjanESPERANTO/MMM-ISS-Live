@@ -7,7 +7,7 @@
     "url": "git+https://github.com/KristjanESPERANTO/MMM-ISS-Live.git"
   },
   "keywords": [
-    "magic mirror",
+    "MagicMirror",
     "ISS",
     "livestream"
   ],
@@ -21,6 +21,7 @@
   "devDependencies": {
     "@eslint/js": "^9.14.0",
     "@stylistic/eslint-plugin": "^2.10.1",
+    "cspell": "^8.15.7",
     "eslint": "^9.14.0",
     "eslint-plugin-import": "^2.31.0",
     "globals": "^15.12.0",
@@ -30,6 +31,7 @@
   "scripts": {
     "lint": "eslint . && markdownlint . --ignore node_modules  && prettier --check .",
     "lint:fix": "eslint . --fix && markdownlint . --ignore node_modules && prettier . --write",
-    "test": "npm run lint"
+    "test": "npm run lint && npm run test:spelling",
+    "test:spelling": "cspell ."
   }
 }
