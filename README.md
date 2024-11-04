@@ -72,3 +72,17 @@ There are several video streams from the ISS on YouTube. To switch to another st
 Since the original module didn't work anymore and the author, [Mykle1](https://github.com/Mykle1), is no longer active, I forked the module. I fixed a few issues and will try to keep the module working in the future.
 
 But **this module is in maintenance mode.** So I'm not planning any functional changes. If someone wants to take over the further development, I would be happy. PR's are welcome too!
+
+## Contributing
+
+If you find any problems, bugs or have questions, please [open a GitHub issue](https://github.com/KristjanESPERANTO/MMM-ISS-Live/issues) in this repository.
+
+Pull requests are of course also very welcome 🙂
+
+### Developer commands
+
+- `npm install` - Install dependencies like ESLint and prettier.
+- `npm run lint` - Run linting and formatter checks.
+- `npm run lint:fix` - Fix linting and formatter issues.
+- `npm run test` - Run linting and formatter checks + Run spelling check.
+- `npm run test:spelling` - Run spelling check.
