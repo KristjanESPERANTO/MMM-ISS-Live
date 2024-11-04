@@ -7,11 +7,9 @@ Live video from the International Space Station includes internal views when the
 
 During "loss of signal" periods, viewers will see a blue screen. Since the station orbits the Earth once every 90 minutes, it experiences a sunrise or a sunset about every 45 minutes. When the station is in darkness, external camera video may appear black, but can sometimes provide spectacular views of lightning or city lights below.
 
-## Examples
+## Screenshots
 
-The module is a live stream. These are still shots, obviously.
-
-![Screenshot 1](images/i1.png) ![Screenshot 2](images/i33.png)
+![Screenshot 1](images/screenshot1.png) ![Screenshot 2](images/screenshot2.png)
 
 ## Installation
 
