@@ -2,23 +2,28 @@
   "name": "mmm-iss-live",
   "version": "2.0.0",
   "description": "Displays live video from the International Space Station on your MagicMirror².",
-  "repository": "KristjanESPERANTO/MMM-ISS-Live",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KristjanESPERANTO/MMM-ISS-Live.git"
+  },
   "keywords": [
     "magic mirror",
     "ISS",
     "livestream"
   ],
-  "author": {
-    "name": "mykle1",
-    "url": "https://github.com/mykle1/MMM-ISS-Live"
+  "main": "MMM-ISS-Live.js",
+  "bugs": {
+    "url": "https://github.com/KristjanESPERANTO/MMM-ISS-Live/issues"
   },
+  "homepage": "https://github.com/KristjanESPERANTO/MMM-ISS-Live#readme",
+  "author": "mykle1 (https://github.com/mykle1/MMM-ISS-Live)",
   "license": "MIT",
   "devDependencies": {
-    "@eslint/js": "^9.13.0",
-    "@stylistic/eslint-plugin": "^2.9.0",
-    "eslint": "^9.13.0",
+    "@eslint/js": "^9.14.0",
+    "@stylistic/eslint-plugin": "^2.10.1",
+    "eslint": "^9.14.0",
     "eslint-plugin-import": "^2.31.0",
-    "globals": "^15.11.0",
+    "globals": "^15.12.0",
     "markdownlint-cli": "^0.42.0",
     "prettier": "^3.3.3"
   },
