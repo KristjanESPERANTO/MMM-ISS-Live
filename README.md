@@ -38,7 +38,7 @@ git pull
 ```js
     {
       module: "MMM-ISS-Live",
-      position: "bottom left"
+      position: "bottom_left"
     },
 ```
 
@@ -48,7 +48,7 @@ git pull
     {
       module: "MMM-ISS-Live",
       header: "ISS Live Stream", // With header
-      position: "bottom left",
+      position: "bottom_left",
       config: {
         url: "https://www.youtube.com/embed/xRPjKQtRXR8?si=zi-AnQaKiuwKkaLR", // Another video stream
         height: "540px",         // Double height than default
