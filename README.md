@@ -1,7 +1,6 @@
 # MMM-ISS-Live
 
-- Displays live video from the International Space Station.
-- Audio from the ISS (when available).
+**MMM-ISS-Live** is module for [MagicMirror²](https://github.com/MagicMirrorOrg/MagicMirror) to display a live video stream from the International Space Station.
 
 Live video from the International Space Station includes internal views when the crew is on-duty and Earth views at other times. The video is accompanied by audio of conversations between the crew and Mission Control. This video is only available when the space station is in contact with the ground.
 
