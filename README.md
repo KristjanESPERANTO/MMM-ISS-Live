@@ -68,7 +68,7 @@ There are several video streams from the ISS on YouTube. To switch to another st
 
 Since the original module didn't work anymore and the author, [Mykle1](https://github.com/Mykle1), is no longer active, I forked the module. I fixed a few issues and will try to keep the module working in the future.
 
-But **this module is in maintenance mode.** So I'm not planning any functional changes. If someone wants to take over the further development, I would be happy. PR's are welcome too!
+**This module is in maintenance mode.**
 
 ## Contributing
 
