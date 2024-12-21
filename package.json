@@ -19,8 +19,8 @@
   "author": "mykle1 (https://github.com/mykle1/MMM-ISS-Live)",
   "main": "MMM-ISS-Live.js",
   "scripts": {
-    "lint": "eslint . && markdownlint . --ignore node_modules  && prettier --check .",
-    "lint:fix": "eslint . --fix && markdownlint . --ignore node_modules && prettier . --write",
+    "lint": "eslint && markdownlint . --ignore node_modules  && prettier --check .",
+    "lint:fix": "eslint --fix && markdownlint . --ignore node_modules && prettier . --write",
     "release": "npx bumpp --no-push",
     "test": "npm run lint && npm run test:spelling",
     "test:spelling": "cspell ."
