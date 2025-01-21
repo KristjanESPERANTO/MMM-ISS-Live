@@ -59,8 +59,8 @@ There are several video streams from the ISS on YouTube. To switch to another st
 
 - _LIVE: NASA Live Stream of Earth from Space (ISS)_
   `"https://www.youtube.com/embed/xRPjKQtRXR8?si=zi-AnQaKiuwKkaLR"`
-- _Live High-Definition Views from the International Space Station (Official NASA Stream)_ - **Default**
-  `"https://www.youtube.com/embed/P9C25Un7xaM?si=MVmSwml-ecTsw_Tr"`
+- _Live Video from the International Space Station (Official NASA Stream)_ - **Default**
+  `"https://www.youtube.com/embed/OCem0E-0Q6Y?si=ABf9IB2wDLzHxgeW"`
 
 **Side note:** _Basically you can use this module to embed any YouTube video. You only need to find out the embedded URL of the video and enter it as url option._
 
