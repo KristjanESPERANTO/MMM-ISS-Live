@@ -70,6 +70,10 @@ Since the original module didn't work anymore and the author, [Mykle1](https://g
 
 **This module is in maintenance mode.**
 
+## Known issues
+
+If you use pi-hole or any other ad blocker, you may need to whitelist some ad URLs to get the video stream working. Check out the browser console for the URL(s).
+
 ## Contributing
 
 If you find any problems, bugs or have questions, please [open a GitHub issue](https://github.com/KristjanESPERANTO/MMM-ISS-Live/issues) in this repository.
