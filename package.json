@@ -19,20 +19,34 @@
   "author": "mykle1 (https://github.com/mykle1/MMM-ISS-Live)",
   "main": "MMM-ISS-Live.js",
   "scripts": {
-    "lint": "eslint && markdownlint . --ignore node_modules  && prettier --check .",
-    "lint:fix": "eslint --fix && markdownlint . --ignore node_modules && prettier . --write",
+    "lint": "eslint && markdownlint . --ignore node_modules && prettier --check .",
+    "lint:fix": "eslint --fix && markdownlint . --ignore node_modules --fix && prettier . --write",
+    "prepare": "husky",
     "release": "npx bumpp --no-push",
     "test": "npm run lint && npm run test:spelling",
     "test:spelling": "cspell ."
   },
+  "lint-staged": {
+    "!(*.md)": [
+      "eslint --fix",
+      "prettier --write --ignore-unknown"
+    ],
+    "*.md": [
+      "markdownlint --ignore node_modules --fix",
+      "prettier --write"
+    ]
+  },
   "devDependencies": {
-    "@eslint/js": "^9.18.0",
-    "@stylistic/eslint-plugin": "^2.13.0",
-    "cspell": "^8.17.2",
-    "eslint": "^9.18.0",
+    "@eslint/js": "^9.20.0",
+    "@stylistic/eslint-plugin": "^4.0.1",
+    "cspell": "^8.17.4",
+    "eslint": "^9.20.1",
     "eslint-plugin-import": "^2.31.0",
-    "globals": "^15.14.0",
-    "markdownlint-cli": "^0.43.0",
-    "prettier": "^3.4.2"
+    "eslint-plugin-package-json": "^0.26.0",
+    "globals": "^15.15.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.4.3",
+    "markdownlint-cli": "^0.44.0",
+    "prettier": "^3.5.1"
   }
 }
