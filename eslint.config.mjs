@@ -12,7 +12,8 @@ const config = [
   {
     "files": ["package.json"],
     "rules": {
-      "package-json/valid-package-def": "off"
+      "package-json/require-author": "error",
+      "package-json/require-keywords": "error"
     }
   },
   {
