@@ -1,4 +1,4 @@
-import eslintPluginImport from "eslint-plugin-import";
+import eslintPluginImport from "eslint-plugin-import-x";
 import eslintPluginJs from "@eslint/js";
 import eslintPluginPackageJson from "eslint-plugin-package-json/configs/recommended";
 import eslintPluginStylistic from "@stylistic/eslint-plugin";
@@ -52,7 +52,7 @@ const config = [
       "@stylistic/indent": ["error", 2],
       "@stylistic/padded-blocks": ["error", "never"],
       "func-style": "off",
-      "import/no-unresolved": "off",
+      "import-x/no-unresolved": "off",
       "max-lines-per-function": ["error", 100],
       "no-magic-numbers": "off",
       "one-var": "off",
