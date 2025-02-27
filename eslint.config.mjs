@@ -10,12 +10,6 @@ const config = [
   eslintPluginPackageJson,
   eslintPluginStylistic.configs.all,
   {
-    "files": ["package.json"],
-    "rules": {
-      "package-json/valid-package-def": "off"
-    }
-  },
-  {
     "files": ["**/*.js"],
     "languageOptions": {
       "ecmaVersion": "latest",
