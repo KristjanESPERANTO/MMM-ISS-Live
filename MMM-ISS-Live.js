@@ -31,7 +31,7 @@ Module.register("MMM-ISS-Live", {
 
     iframe.src = this.config.url
       ? this.config.url
-      : "https://www.youtube.com/embed/OCem0E-0Q6Y?si=ABf9IB2wDLzHxgeW";
+      : "https://www.youtube.com/embed/jKHvbJe9c_Y?si=aV7qYpZ8H-FY0eRt";
 
     iframe.src += "&autoplay=1";
 
