@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.6](https://github.com/KristjanESPERANTO/MMM-ISS-Live/compare/v2.0.5...v2.0.6) - 2025-04-21
+
+### Changed
+
+- chore: update devDependencies
+- chore: update ESLint configuration to use new import plugin structure
+- docs: adapt 'npm install' description for consistency with other modules
+
 ## [2.0.5](https://github.com/KristjanESPERANTO/MMM-ISS-Live/compare/v2.0.4...v2.0.5) - 2025-03-18
 
 ### Added
