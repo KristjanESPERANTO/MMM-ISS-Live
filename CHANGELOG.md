@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.7](https://github.com/KristjanESPERANTO/MMM-ISS-Live/compare/v2.0.6...v2.0.7) - 2025-05-17
+
+### Changed
+
+- chore: update devDependencies
+- chore: review linter setup
+
 ## [2.0.6](https://github.com/KristjanESPERANTO/MMM-ISS-Live/compare/v2.0.5...v2.0.6) - 2025-04-21
 
 ### Changed
