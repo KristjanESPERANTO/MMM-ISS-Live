@@ -19,33 +19,29 @@
   "author": "mykle1 (https://github.com/mykle1/MMM-ISS-Live)",
   "main": "MMM-ISS-Live.js",
   "scripts": {
-    "lint": "eslint && markdownlint . --ignore node_modules && prettier --check .",
-    "lint:fix": "eslint --fix && markdownlint . --ignore node_modules --fix && prettier . --write",
+    "lint": "eslint && prettier . --check",
+    "lint:fix": "eslint --fix && prettier . --write",
     "prepare": "husky",
     "test": "npm run lint && npm run test:spelling",
     "test:spelling": "cspell ."
   },
   "lint-staged": {
-    "!(*.md)": [
+    "*": [
       "eslint --fix",
       "prettier --write --ignore-unknown"
-    ],
-    "*.md": [
-      "markdownlint --ignore node_modules --fix",
-      "prettier --write"
     ]
   },
   "devDependencies": {
     "@eslint/js": "^9.25.0",
+    "@eslint/json": "^0.12.0",
+    "@eslint/markdown": "^6.4.0",
     "@stylistic/eslint-plugin": "^4.2.0",
     "cspell": "^8.19.2",
     "eslint": "^9.25.0",
     "eslint-plugin-import-x": "^4.10.6",
-    "eslint-plugin-package-json": "^0.29.1",
     "globals": "^16.0.0",
     "husky": "^9.1.7",
     "lint-staged": "^15.5.1",
-    "markdownlint-cli": "^0.44.0",
     "prettier": "^3.5.3"
   }
 }

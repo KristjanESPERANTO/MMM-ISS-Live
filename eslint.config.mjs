@@ -1,25 +1,23 @@
-import eslintPluginJs from "@eslint/js";
-import eslintPluginPackageJson from "eslint-plugin-package-json";
-import eslintPluginStylistic from "@stylistic/eslint-plugin";
+import {defineConfig} from "eslint/config";
 import globals from "globals";
-import {flatConfigs as importConfigs} from "eslint-plugin-import-x";
+import {flatConfigs as importX} from "eslint-plugin-import-x";
+import js from "@eslint/js";
+import json from "@eslint/json";
+import markdown from "@eslint/markdown";
+import stylistic from "@stylistic/eslint-plugin";
 
-const config = [
-  eslintPluginJs.configs.all,
-  eslintPluginPackageJson.configs.recommended,
-  eslintPluginStylistic.configs.all,
-  importConfigs.recommended,
+export default defineConfig([
   {
     "files": ["**/*.js"],
     "languageOptions": {
       "ecmaVersion": "latest",
       "globals": {
         ...globals.browser,
-        ...globals.node,
-        "config": "readonly"
-      },
-      "sourceType": "commonjs"
+        ...globals.node
+      }
     },
+    "plugins": {js, stylistic},
+    "extends": [importX.recommended, "js/all", "stylistic/all"],
     "rules": {
       "@stylistic/array-element-newline": ["error", "consistent"],
       "@stylistic/dot-location": ["error", "property"],
@@ -47,18 +45,19 @@ const config = [
       },
       "sourceType": "module"
     },
+    "plugins": {js, stylistic},
+    "extends": [importX.recommended, "js/all", "stylistic/all"],
     "rules": {
-      "@stylistic/array-element-newline": "off",
+      "@stylistic/array-element-newline": ["error", "consistent"],
       "@stylistic/indent": ["error", 2],
-      "@stylistic/padded-blocks": ["error", "never"],
-      "func-style": "off",
-      "import-x/no-unresolved": "off",
-      "max-lines-per-function": ["error", 100],
-      "no-magic-numbers": "off",
+      "@stylistic/object-property-newline": ["error", {"allowAllPropertiesOnSameLine": true}],
+      "import-x/no-unresolved": ["error", {"ignore": ["eslint/config"]}],
+      "no-magic-numbers": ["error", {"ignore": [2, 25]}],
       "one-var": "off",
-      "prefer-destructuring": "off"
+      "prefer-destructuring": "off",
+      "sort-keys": "off"
     }
-  }
-];
-
-export default config;
+  },
+  {"files": ["**/*.json"], "ignores": ["package-lock.json"], "plugins": {json}, "extends": ["json/recommended"], "language": "json/json"},
+  {"files": ["**/*.md"], "plugins": {markdown}, "extends": ["markdown/recommended"], "language": "markdown/gfm"}
+]);
