@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.8](https://github.com/KristjanESPERANTO/MMM-ISS-Live/compare/v2.0.7...v2.0.8) - 2025-06-23
+
+### Changed
+
+- chore: add `"type": "module"` to `package.json`
+- chore: update devDependencies
+
 ## [2.0.7](https://github.com/KristjanESPERANTO/MMM-ISS-Live/compare/v2.0.6...v2.0.7) - 2025-05-17
 
 ### Changed
