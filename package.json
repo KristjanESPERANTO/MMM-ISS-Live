@@ -2,6 +2,7 @@
   "name": "mmm-iss-live",
   "version": "2.0.7",
   "description": "Displays live video from the International Space Station on your MagicMirror².",
+  "type": "module",
   "keywords": [
     "MagicMirror",
     "ISS",
