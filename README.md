@@ -47,22 +47,42 @@ git pull
       header: "ISS Live Stream", // With header
       position: "bottom_left",
       config: {
-        url: "https://www.youtube.com/embed/xRPjKQtRXR8?si=zi-AnQaKiuwKkaLR", // Another video stream
+        url: "https://www.youtube.com/embed/yf5cEJULZXk?si=Dx852YRN5q6NHj0K", // Another video stream
         height: "540px",         // Double height than default
         width: "960px",          // Double width than default
-        mute: false              // Sound enabled
+        mute: true               // Sound disabled
       }
     },
 ```
 
+### Preparing Electron
+
+MagicMirror² disables the `<webview>` tag by default. Enable it by adding the following snippet to your `config/config.js`:
+
+```js
+let config = {
+  ...
+  electronOptions: {
+    webPreferences: {
+      webviewTag: true;
+    }
+  },
+  ...
+}
+```
+
+If the tag stays disabled, the module automatically falls back to the iframe renderer.
+
+### Other streams
+
 There are several video streams from the ISS on YouTube. To switch to another stream, you need to set the URL option as in the customized example above.
 
-- _LIVE: NASA Live Stream of Earth from Space (ISS)_
-  `"https://www.youtube.com/embed/xRPjKQtRXR8?si=zi-AnQaKiuwKkaLR"`
-- _Live Video from the International Space Station (Official NASA Stream)_ - **Default**
-  `"https://www.youtube.com/embed/jKHvbJe9c_Y?si=aV7qYpZ8H-FY0eRt"`
+- _24/7 Live from the International Space Station | Dream Trips_
+  `"https://www.youtube.com/embed/0FBiyFpV__g?si=XQBqqppbArDV7nEB"`
+- _Live High-Definition Views from the International Space Station (Official NASA Stream)_ - **Default**
+  `"https://www.youtube.com/embed/yf5cEJULZXk?si=Dx852YRN5q6NHj0K"`
 
-**Side note:** _Basically you can use this module to embed any YouTube video. You only need to find out the embedded URL of the video and enter it as url option._
+**Side note:** _Basically you can use this module to embed any YouTube video (if the owner didn't disable embedding). You only need to find out the embedded URL of the video and enter it as url option._
 
 ## Project status
 
