@@ -1,7 +1,14 @@
 {
   "version": "0.2",
   "language": "en",
-  "words": ["autoplay", "Kristjan", "livestream", "mykle"],
+  "words": [
+    "autoplay",
+    "Kristjan",
+    "playsinline",
+    "livestream",
+    "mykle",
+    "webpreferences"
+  ],
   "ignorePaths": ["node_modules/**", "translations/**"],
   "dictionaries": ["node"]
 }
