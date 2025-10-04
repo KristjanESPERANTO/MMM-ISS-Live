@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.1.0](https://github.com/KristjanESPERANTO/MMM-ISS-Live/compare/v2.0.8...v2.1.0) - 2025-10.04
+
+### Added
+
+- feat: enhance MMM-ISS-Live module with webview support and updated default video URL
+
+### Changed
+
+- chore: update actions/checkout to v5 in automated tests workflow
+- chore: update actions/setup-node to v5 in automated tests workflow
+- chore: update devDependencies
+
 ## [2.0.8](https://github.com/KristjanESPERANTO/MMM-ISS-Live/compare/v2.0.7...v2.0.8) - 2025-06-23
 
 ### Changed
