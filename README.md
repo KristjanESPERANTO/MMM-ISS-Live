@@ -73,6 +73,15 @@ let config = {
 
 If the tag stays disabled, the module automatically falls back to the iframe renderer.
 
+### Docker / Browser notes
+
+- The module adds an `origin` query parameter and sets `referrerpolicy="strict-origin-when-cross-origin"` on the iframe in browser/server mode. This helps prevent the YouTube "Video player configuration error (153)".
+- If you still see player errors, check your browser dev tools for Content Security Policy (CSP) violations. Your server's CSP must allow connections to YouTube and Google Video domains, e.g.:
+  - `frame-src`: `https://www.youtube.com` `https://www.youtube-nocookie.com`
+  - `connect-src`/`media-src`: `https://*.youtube.com` `https://*.googlevideo.com`
+
+  Configure this in your reverse proxy or MagicMirror server headers as appropriate.
+
 ### Other streams
 
 There are several video streams from the ISS on YouTube. To switch to another stream, you need to set the URL option as in the customized example above.

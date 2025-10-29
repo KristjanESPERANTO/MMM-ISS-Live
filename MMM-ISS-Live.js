@@ -18,7 +18,7 @@ Module.register("MMM-ISS-Live", {
   getDom () {
     const isElectron = this.isElectron();
     const shouldMute = this.getEffectiveMute(isElectron);
-    const streamUrl = this.buildStreamUrl(shouldMute);
+    const streamUrl = this.buildStreamUrl(shouldMute, isElectron);
 
     if (!this.shouldUseWebview(isElectron)) {
       if (isElectron) {
@@ -57,7 +57,7 @@ Module.register("MMM-ISS-Live", {
     }
   },
 
-  buildStreamUrl (shouldMute) {
+  buildStreamUrl (shouldMute, isElectron) {
     const defaultUrl = "https://www.youtube.com/embed/yf5cEJULZXk?si=Dx852YRN5q6NHj0K";
     let streamUrl = this.config.url || defaultUrl;
 
@@ -69,6 +69,10 @@ Module.register("MMM-ISS-Live", {
       parsedUrl.searchParams.set("mute", shouldMute
         ? "1"
         : "0");
+
+      if (!isElectron && typeof window !== "undefined" && window.location && window.location.origin) {
+        parsedUrl.searchParams.set("origin", window.location.origin);
+      }
 
       streamUrl = parsedUrl.toString();
     } catch (error) {
@@ -162,6 +166,7 @@ Module.register("MMM-ISS-Live", {
     iframe.width = this.config.width;
     iframe.height = this.config.height;
     iframe.setAttribute("allow", "autoplay; fullscreen; picture-in-picture; encrypted-media");
+    iframe.setAttribute("referrerpolicy", "strict-origin-when-cross-origin");
     iframe.src = streamUrl;
 
     return iframe;

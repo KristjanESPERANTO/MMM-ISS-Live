@@ -7,6 +7,7 @@
     "playsinline",
     "livestream",
     "mykle",
+    "referrerpolicy",
     "webpreferences"
   ],
   "ignorePaths": ["node_modules/**", "translations/**"],
