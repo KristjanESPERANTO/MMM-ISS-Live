@@ -16,8 +16,7 @@ export default defineConfig([
         ...globals.node
       }
     },
-    "plugins": {js, stylistic},
-    "extends": [importX.recommended, "js/all", "stylistic/all"],
+    "extends": [importX.recommended, js.configs.all, stylistic.configs.all],
     "rules": {
       "@stylistic/array-element-newline": ["error", "consistent"],
       "@stylistic/dot-location": ["error", "property"],
@@ -45,8 +44,7 @@ export default defineConfig([
       },
       "sourceType": "module"
     },
-    "plugins": {js, stylistic},
-    "extends": [importX.recommended, "js/all", "stylistic/all"],
+    "extends": [importX.recommended, js.configs.all, stylistic.configs.all],
     "rules": {
       "@stylistic/array-element-newline": ["error", "consistent"],
       "@stylistic/indent": ["error", 2],
@@ -59,5 +57,5 @@ export default defineConfig([
     }
   },
   {"files": ["**/*.json"], "ignores": ["package-lock.json"], "plugins": {json}, "extends": ["json/recommended"], "language": "json/json"},
-  {"files": ["**/*.md"], "plugins": {markdown}, "extends": ["markdown/recommended"], "language": "markdown/gfm"}
+  {"files": ["**/*.md"], "plugins": {markdown}, "extends": ["markdown/recommended"], "language": "markdown/gfm", "rules": {"markdown/no-missing-label-refs": "off"}}
 ]);
