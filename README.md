@@ -1,5 +1,11 @@
 # MMM-ISS-Live
 
+> [!WARNING]
+> **This module is currently not working.**
+> YouTube has made it more difficult to embed their videos, and no solution has been found yet. I haven't found any other usable live streams from the ISS either – so for now, the module is classified as non-functional.
+>
+> If you have an idea or a solution, please share it in [issue #7](https://github.com/KristjanESPERANTO/MMM-ISS-Live/issues/7).
+
 **MMM-ISS-Live** is module for [MagicMirror²](https://github.com/MagicMirrorOrg/MagicMirror) to display a live video stream from the International Space Station.
 
 Live video from the International Space Station includes internal views when the crew is on-duty and Earth views at other times. The video is accompanied by audio of conversations between the crew and Mission Control. This video is only available when the space station is in contact with the ground.
