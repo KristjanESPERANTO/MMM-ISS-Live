@@ -1,8 +1,42 @@
 # Changelog
 
-All notable changes to this project will be documented in this file.
+All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
-This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+## [2.3.0](https://github.com/KristjanESPERANTO/MMM-ISS-Live/compare/v2.2.0...v2.3.0) (2026-03-07)
+
+Thanks to @ChrisF1976 the module is working again. Thanks!
+
+### Added
+
+* add changelog config and release script ([1d970d7](https://github.com/KristjanESPERANTO/MMM-ISS-Live/commit/1d970d7307f38d9f328a343f992763b30e7996d3))
+
+
+### Fixed
+
+* convert YouTube watch URLs to embed format and improve stream parameters ([7a6131d](https://github.com/KristjanESPERANTO/MMM-ISS-Live/commit/7a6131d55b02809a7aab670623438bfe67d8f9ac)) (#8)
+* strip Electron user agent and set referrer to fix YouTube Error 153 in webview ([242db11](https://github.com/KristjanESPERANTO/MMM-ISS-Live/commit/242db114630529efcc1349ec4571f5753bf36e25))
+
+
+### Documentation
+
+* update README to clarify module status ([e6b8b6f](https://github.com/KristjanESPERANTO/MMM-ISS-Live/commit/e6b8b6f682e0db3a85a2f68576693bde343876f2))
+* update README to reflect working module status and clean up URLs ([41a0fd9](https://github.com/KristjanESPERANTO/MMM-ISS-Live/commit/41a0fd9e5b35362d1829d2639a3a4a1e39a8efcf))
+
+
+### Chores
+
+* add demo script ([e1e8ba0](https://github.com/KristjanESPERANTO/MMM-ISS-Live/commit/e1e8ba06cafb67f09a8713419e6d64b66e10e1db))
+* change runner from ubuntu-latest to ubuntu-slim in automated tests workflow ([809ed85](https://github.com/KristjanESPERANTO/MMM-ISS-Live/commit/809ed85800be65e218e7a7a4cc5f9aad32421eb8))
+* replace husky with simple-git-hooks ([a28c68a](https://github.com/KristjanESPERANTO/MMM-ISS-Live/commit/a28c68a40fe10ebbcd5761cb1afb56aa3bbc51ee))
+* update actions/checkout to v6 in automated tests workflow ([249cc1b](https://github.com/KristjanESPERANTO/MMM-ISS-Live/commit/249cc1bc7dcfe9bfa2fe281ccba08dbfa01121f3))
+* update devDependencies ([12549fe](https://github.com/KristjanESPERANTO/MMM-ISS-Live/commit/12549fe83014502928a99e6955e834285f8eb3d6))
+* update devDependencies ([88e8339](https://github.com/KristjanESPERANTO/MMM-ISS-Live/commit/88e8339861fdfb53b785872b1d20d26fc2e65764))
+* update eslint config ([ef21b66](https://github.com/KristjanESPERANTO/MMM-ISS-Live/commit/ef21b664bab0ca2c5c22c294d98b918c0ff3a182))
+
+
+### Code Refactoring
+
+* extract convertYouTubeUrl helper and fix stream URL issues ([8a02e25](https://github.com/KristjanESPERANTO/MMM-ISS-Live/commit/8a02e251cffdaf5618bac44e8cf3447f0165150f))
 
 ## [2.2.0](https://github.com/KristjanESPERANTO/MMM-ISS-Live/compare/v2.1.0...v2.2.0) - 2025-10-29
 
