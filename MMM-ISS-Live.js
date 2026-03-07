@@ -57,41 +57,46 @@ Module.register("MMM-ISS-Live", {
     }
   },
 
-  buildStreamUrl (shouldMute, isElectron) {
-    // Standard-URL (NASA-Stream) - funktioniert aktuell nicht, aber als Fallback
-    const defaultUrl = "https://www.youtube.com/embed/yf5cEJULZXk";
-    let streamUrl = this.config.url || defaultUrl;
-
-    if (streamUrl.includes("youtube.com/watch") || streamUrl.includes("youtu.be/")) {
-      try {
-        let videoId = "";
-
-        if (streamUrl.includes("youtu.be/")) {
-          // Format: https://youtu.be/VIDEO_ID?params
-          videoId = streamUrl.split("youtu.be/")[1].split("?")[0].split("&")[0];
-        } else {
-          // Format: https://www.youtube.com/watch?v=VIDEO_ID
-          const urlParams = new URLSearchParams(new URL(streamUrl).search);
-          videoId = urlParams.get("v");
-        }
-
-        if (videoId) {
-          // Baue korrekte embed-URL
-          streamUrl = `https://www.youtube.com/embed/${videoId}`;
-          Log.log(`${this.name} converted watch URL to embed URL: ${streamUrl}`);
-        }
-      } catch (error) {
-        Log.error(`${this.name} failed to parse YouTube URL: ${streamUrl}`, error);
-      }
+  // Convert youtube.com/watch or youtu.be short URLs to the embed format.
+  convertYouTubeUrl (url) {
+    if (!url.includes("youtube.com/watch") && !url.includes("youtu.be/")) {
+      return url;
     }
+
+    try {
+      let videoId = "";
+
+      if (url.includes("youtu.be/")) {
+        // Format: https://youtu.be/VIDEO_ID?params
+        const [, afterSlash] = url.split("youtu.be/");
+        [videoId] = afterSlash.split("?");
+      } else {
+        // Format: https://www.youtube.com/watch?v=VIDEO_ID
+        const urlParams = new URLSearchParams(new URL(url).search);
+        videoId = urlParams.get("v");
+      }
+
+      if (videoId) {
+        const embedUrl = `https://www.youtube.com/embed/${videoId}`;
+        Log.log(`${this.name} converted watch URL to embed URL: ${embedUrl}`);
+        return embedUrl;
+      }
+    } catch (error) {
+      Log.error(`${this.name} failed to parse YouTube URL: ${url}`, error);
+    }
+
+    return url;
+  },
+
+  buildStreamUrl (shouldMute, isElectron) {
+    const defaultUrl = "https://www.youtube.com/embed/yf5cEJULZXk";
+    let streamUrl = this.convertYouTubeUrl(this.config.url || defaultUrl);
 
     try {
       const parsedUrl = new URL(streamUrl);
 
       parsedUrl.searchParams.set("autoplay", "1");
       parsedUrl.searchParams.set("playsinline", "1");
-      parsedUrl.searchParams.set("enablejsapi", "1"); // Wichtig für Steuerung
-
       parsedUrl.searchParams.set("mute", shouldMute
         ? "1"
         : "0");
@@ -102,9 +107,9 @@ Module.register("MMM-ISS-Live", {
 
       parsedUrl.searchParams.set("rel", "0");
 
-      parsedUrl.searchParams.set("controls", "1");
-
-      parsedUrl.searchParams.set("widget_referrer", window.location.origin || "https://magicmirror");
+      if (typeof window !== "undefined" && window.location && window.location.origin) {
+        parsedUrl.searchParams.set("widget_referrer", window.location.origin);
+      }
 
       streamUrl = parsedUrl.toString();
     } catch (error) {
@@ -119,11 +124,7 @@ Module.register("MMM-ISS-Live", {
       if (shouldMute && !streamUrl.includes("mute=")) {
         streamUrl += streamUrl.includes("?")
           ? "&mute=1"
-          : "&mute=1";
-      }
-
-      if (streamUrl.includes("youtube.com/watch")) {
-        streamUrl = streamUrl.replace("watch?v=", "embed/").split("&")[0];
+          : "?mute=1";
       }
     }
 
