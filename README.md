@@ -1,11 +1,5 @@
 # MMM-ISS-Live
 
-> [!WARNING]
-> **This module is currently not working.**
-> YouTube has made it more difficult to embed their videos, and no solution has been found yet. I haven't found any other usable live streams from the ISS either – so for now, the module is classified as non-functional.
->
-> If you have an idea or a solution, please share it in [issue #7](https://github.com/KristjanESPERANTO/MMM-ISS-Live/issues/7).
-
 **MMM-ISS-Live** is module for [MagicMirror²](https://github.com/MagicMirrorOrg/MagicMirror) to display a live video stream from the International Space Station.
 
 Live video from the International Space Station includes internal views when the crew is on-duty and Earth views at other times. The video is accompanied by audio of conversations between the crew and Mission Control. This video is only available when the space station is in contact with the ground.
@@ -53,7 +47,7 @@ git pull
       header: "ISS Live Stream", // With header
       position: "bottom_left",
       config: {
-        url: "https://www.youtube.com/embed/yf5cEJULZXk?si=Dx852YRN5q6NHj0K", // Another video stream
+        url: "https://www.youtube.com/embed/0FBiyFpV__g", // Another video stream
         height: "540px",         // Double height than default
         width: "960px",          // Double width than default
         mute: true               // Sound disabled
@@ -93,11 +87,11 @@ If the tag stays disabled, the module automatically falls back to the iframe ren
 There are several video streams from the ISS on YouTube. To switch to another stream, you need to set the URL option as in the customized example above.
 
 - _24/7 Live from the International Space Station | Dream Trips_
-  `"https://www.youtube.com/embed/0FBiyFpV__g?si=XQBqqppbArDV7nEB"`
+  `"https://www.youtube.com/embed/0FBiyFpV__g"`
 - _Live High-Definition Views from the International Space Station (Official NASA Stream)_ - **Default**
-  `"https://www.youtube.com/embed/yf5cEJULZXk?si=Dx852YRN5q6NHj0K"`
+  `"https://www.youtube.com/embed/yf5cEJULZXk"`
 
-**Side note:** _Basically you can use this module to embed any YouTube video (if the owner didn't disable embedding). You only need to find out the embedded URL of the video and enter it as url option._
+**Side note:** _Basically you can use this module to embed any YouTube video (if the owner didn't disable embedding). You only need to find out the URL of the video and enter it as `url` option. Regular YouTube URLs (`youtube.com/watch?v=…` or `youtu.be/…`) are automatically converted to embed URLs._
 
 ## Project status
 
