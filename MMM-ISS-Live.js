@@ -9,6 +9,7 @@ Module.register("MMM-ISS-Live", {
     mute: true,
     webPreferences: "autoplayPolicy=no-user-gesture-required"
   },
+
   start () {
     setInterval(() => {
       this.updateDom(this.config.animationSpeed || 0);
@@ -18,46 +19,26 @@ Module.register("MMM-ISS-Live", {
   getDom () {
     const isElectron = this.isElectron();
     const shouldMute = this.getEffectiveMute(isElectron);
-    const streamUrl = this.buildStreamUrl(shouldMute, isElectron);
+    const streamUrl = this.buildStreamUrl(shouldMute);
 
-    if (!this.shouldUseWebview(isElectron)) {
-      if (isElectron) {
-        Log.warn(`${this.name} falling back to iframe because webview is disabled or unsupported.`);
-      }
-      return this.createIframe(streamUrl);
+    if (this.shouldUseWebview(isElectron)) {
+      return this.createWebview(streamUrl, shouldMute);
     }
 
-    const webview = document.createElement("webview");
-    this.applyWebviewAppearance(webview);
-    webview.src = streamUrl;
-
-    this.applyWebviewPreferences(webview);
-    this.attachAudioMuteHandler(webview, shouldMute);
-    this.attachWebviewFallbackHandlers(webview, streamUrl);
-
-    return webview;
-  },
-
-  applyWebviewAppearance (webview) {
-    webview.classList.add("webview", "iframe");
-    webview.style.border = "0 none transparent";
-    webview.style.width = this.config.width;
-    webview.style.height = this.config.height;
-    webview.width = this.config.width;
-    webview.height = this.config.height;
-  },
-
-  applyWebviewPreferences (webview) {
-    webview.setAttribute("allow", "autoplay; fullscreen; picture-in-picture; encrypted-media");
-    webview.setAttribute("allowsInlineMediaPlayback", "true");
-    webview.setAttribute("allowfullscreen", "true");
-
-    if (this.config.webPreferences) {
-      webview.setAttribute("webpreferences", this.config.webPreferences);
+    if (isElectron) {
+      Log.warn(`${this.name} falling back to iframe because webview is disabled or unsupported.`);
     }
+
+    return this.createIframe(streamUrl);
   },
 
-  // Convert youtube.com/watch or youtu.be short URLs to the embed format.
+  // --- URL handling ---
+
+  /**
+   * Convert youtube.com/watch or youtu.be short URLs to the embed format.
+   * @param {string} url - The URL to convert.
+   * @returns {string} The embed URL or the original URL if conversion failed.
+   */
   convertYouTubeUrl (url) {
     if (!url.includes("youtube.com/watch") && !url.includes("youtu.be/")) {
       return url;
@@ -67,18 +48,15 @@ Module.register("MMM-ISS-Live", {
       let videoId = "";
 
       if (url.includes("youtu.be/")) {
-        // Format: https://youtu.be/VIDEO_ID?params
-        const [, afterSlash] = url.split("youtu.be/");
-        [videoId] = afterSlash.split("?");
+        const [, path] = url.split("youtu.be/");
+        [videoId] = path.split("?");
       } else {
-        // Format: https://www.youtube.com/watch?v=VIDEO_ID
-        const urlParams = new URLSearchParams(new URL(url).search);
-        videoId = urlParams.get("v");
+        videoId = new URL(url).searchParams.get("v");
       }
 
       if (videoId) {
         const embedUrl = `https://www.youtube.com/embed/${videoId}`;
-        Log.log(`${this.name} converted watch URL to embed URL: ${embedUrl}`);
+        Log.log(`${this.name} converted URL to embed format: ${embedUrl}`);
         return embedUrl;
       }
     } catch (error) {
@@ -88,48 +66,86 @@ Module.register("MMM-ISS-Live", {
     return url;
   },
 
-  buildStreamUrl (shouldMute, isElectron) {
+  buildStreamUrl (shouldMute) {
     const defaultUrl = "https://www.youtube.com/embed/yf5cEJULZXk";
-    let streamUrl = this.convertYouTubeUrl(this.config.url || defaultUrl);
+    const baseUrl = this.convertYouTubeUrl(this.config.url || defaultUrl);
 
     try {
-      const parsedUrl = new URL(streamUrl);
-
-      parsedUrl.searchParams.set("autoplay", "1");
-      parsedUrl.searchParams.set("playsinline", "1");
-      parsedUrl.searchParams.set("mute", shouldMute
+      const url = new URL(baseUrl);
+      url.searchParams.set("autoplay", "1");
+      url.searchParams.set("playsinline", "1");
+      url.searchParams.set("rel", "0");
+      url.searchParams.set("mute", shouldMute
         ? "1"
         : "0");
 
-      if (!isElectron && typeof window !== "undefined" && window.location && window.location.origin) {
-        parsedUrl.searchParams.set("origin", window.location.origin);
+      const origin = this.getOrigin();
+
+      if (origin) {
+        url.searchParams.set("origin", origin);
+        url.searchParams.set("widget_referrer", origin);
       }
 
-      parsedUrl.searchParams.set("rel", "0");
-
-      if (typeof window !== "undefined" && window.location && window.location.origin) {
-        parsedUrl.searchParams.set("widget_referrer", window.location.origin);
-      }
-
-      streamUrl = parsedUrl.toString();
+      return url.toString();
     } catch (error) {
-      Log.warn(`${this.name} failed to parse stream url: ${streamUrl}`, error);
+      Log.warn(`${this.name} failed to parse stream URL: ${baseUrl}`, error);
+      return baseUrl;
+    }
+  },
 
-      if (!streamUrl.includes("autoplay=")) {
-        streamUrl += streamUrl.includes("?")
-          ? "&autoplay=1"
-          : "?autoplay=1";
-      }
+  // --- DOM creation ---
 
-      if (shouldMute && !streamUrl.includes("mute=")) {
-        streamUrl += streamUrl.includes("?")
-          ? "&mute=1"
-          : "?mute=1";
-      }
+  createWebview (streamUrl, shouldMute) {
+    const webview = document.createElement("webview");
+    webview.classList.add("webview", "iframe");
+    this.applyDimensions(webview);
+    webview.src = streamUrl;
+
+    webview.setAttribute("allow", "autoplay; fullscreen; picture-in-picture; encrypted-media");
+    webview.setAttribute("allowsInlineMediaPlayback", "true");
+    webview.setAttribute("allowfullscreen", "true");
+
+    // Strip "Electron/x.y.z" from the user agent so YouTube doesn't block embedding.
+    const cleanUserAgent = (navigator.userAgent || "").replace(/\s*Electron\/[\d.]+/u, "").trim();
+    webview.setAttribute("useragent", cleanUserAgent);
+
+    const origin = this.getOrigin();
+
+    // Set referrer so YouTube's origin check matches the origin parameter in the URL.
+    if (origin) {
+      webview.setAttribute("httpreferrer", origin);
     }
 
-    return streamUrl;
+    if (this.config.webPreferences) {
+      webview.setAttribute("webpreferences", this.config.webPreferences);
+    }
+
+    this.attachAudioMuteHandler(webview, shouldMute);
+    this.attachWebviewFallbackHandlers(webview, streamUrl);
+
+    return webview;
   },
+
+  createIframe (streamUrl) {
+    const iframe = document.createElement("iframe");
+    iframe.classList.add("iframe");
+    this.applyDimensions(iframe);
+    iframe.setAttribute("allow", "autoplay; fullscreen; picture-in-picture; encrypted-media");
+    iframe.setAttribute("referrerpolicy", "strict-origin-when-cross-origin");
+    iframe.src = streamUrl;
+
+    return iframe;
+  },
+
+  applyDimensions (element) {
+    element.style.border = "0 none transparent";
+    element.style.width = this.config.width;
+    element.style.height = this.config.height;
+    element.width = this.config.width;
+    element.height = this.config.height;
+  },
+
+  // --- Webview event handlers ---
 
   attachAudioMuteHandler (webview, shouldMute) {
     webview.addEventListener("dom-ready", () => {
@@ -146,11 +162,9 @@ Module.register("MMM-ISS-Live", {
       if (webview.dataset.fallbackApplied === "true") {
         return;
       }
-
       webview.dataset.fallbackApplied = "true";
-      const iframe = this.createIframe(streamUrl);
       Log.warn(`${this.name} switching to iframe fallback (${reason}).`);
-      webview.replaceWith(iframe);
+      webview.replaceWith(this.createIframe(streamUrl));
     };
 
     const fallbackTimeout = window.setTimeout(() => {
@@ -172,13 +186,15 @@ Module.register("MMM-ISS-Live", {
     });
   },
 
+  // --- Utilities ---
+
   shouldUseWebview (isElectron) {
     if (!isElectron) {
       return false;
     }
 
     const element = document.createElement("webview");
-    const isWebviewTag = element && element.tagName === "WEBVIEW";
+    const isWebviewTag = element?.tagName === "WEBVIEW";
     const hasWebviewAPIs = typeof element.reload === "function";
 
     if (isWebviewTag && hasWebviewAPIs) {
@@ -194,21 +210,6 @@ Module.register("MMM-ISS-Live", {
     return false;
   },
 
-  createIframe (streamUrl) {
-    const iframe = document.createElement("iframe");
-    iframe.classList.add("iframe");
-    iframe.style.border = "0 none transparent";
-    iframe.style.width = this.config.width;
-    iframe.style.height = this.config.height;
-    iframe.width = this.config.width;
-    iframe.height = this.config.height;
-    iframe.setAttribute("allow", "autoplay; fullscreen; picture-in-picture; encrypted-media");
-    iframe.setAttribute("referrerpolicy", "strict-origin-when-cross-origin");
-    iframe.src = streamUrl;
-
-    return iframe;
-  },
-
   getEffectiveMute (isElectron) {
     if (isElectron) {
       return Boolean(this.config.mute);
@@ -222,12 +223,17 @@ Module.register("MMM-ISS-Live", {
     return true;
   },
 
-  isElectron () {
-    const userAgent = navigator?.userAgent || "";
-    return userAgent.includes("Electron");
+  getOrigin () {
+    if (typeof window !== "undefined" && window.location?.origin) {
+      return window.location.origin;
+    }
+    return null;
   },
 
-  /*  Add this function to the modules you want to control with voice */
+  isElectron () {
+    return (navigator?.userAgent || "").includes("Electron");
+  },
+
   notificationReceived (notification, payload) {
     if (notification === "HIDE_STATION") {
       Log.log(`${this.name} received hide command: ${payload}`);
