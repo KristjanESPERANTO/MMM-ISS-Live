@@ -1,6 +1,6 @@
 {
   "name": "mmm-iss-live",
-  "version": "2.3.0",
+  "version": "2.3.1",
   "description": "Displays live video from the International Space Station on your MagicMirror².",
   "type": "commonjs",
   "keywords": [

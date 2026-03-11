@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [2.3.1](https://github.com/KristjanESPERANTO/MMM-ISS-Live/compare/v2.3.0...v2.3.1) (2026-03-11)
+
+
+### Fixed
+
+* update default stream URL and add troubleshooting docs ([ab6a79b](https://github.com/KristjanESPERANTO/MMM-ISS-Live/commit/ab6a79bbee54e9b3132c8b9ea406fac86763881d))
+
+
+### Chores
+
+* add CHANGELOG to .prettierignore ([639fe1e](https://github.com/KristjanESPERANTO/MMM-ISS-Live/commit/639fe1e66f7231650f94459e4b23514d770be8fc))
+* add missing words to cspell configuration ([f6dee2c](https://github.com/KristjanESPERANTO/MMM-ISS-Live/commit/f6dee2cff047813a843baeb7b6dc2c21409f8109))
+* add simple-git-hooks configuration for pre-commit linting ([4c74551](https://github.com/KristjanESPERANTO/MMM-ISS-Live/commit/4c74551a52c6e97088486bd025ec8ee8eb5b7346))
+* format cspell config ([7341a04](https://github.com/KristjanESPERANTO/MMM-ISS-Live/commit/7341a04baf17033cf242418ec3f2241efcca9c56))
+* format README ([9eb75d2](https://github.com/KristjanESPERANTO/MMM-ISS-Live/commit/9eb75d2e0bb39e0aa9cfdbff36ef25e04d451940))
+* simplify prepare script ([6cdc963](https://github.com/KristjanESPERANTO/MMM-ISS-Live/commit/6cdc9636ca19a86ca671d7f414bdb319ca9ed6b6))
+* update devDependencies ([e02d7f1](https://github.com/KristjanESPERANTO/MMM-ISS-Live/commit/e02d7f1ce1c998e4bd69315fffa0b3e1ad7c9b78))
+
 ## [2.3.0](https://github.com/KristjanESPERANTO/MMM-ISS-Live/compare/v2.2.0...v2.3.0) (2026-03-07)
 
 Thanks to @ChrisF1976 the module is working again. Thanks!
