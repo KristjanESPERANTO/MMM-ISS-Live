@@ -67,7 +67,7 @@ Module.register("MMM-ISS-Live", {
   },
 
   buildStreamUrl (shouldMute) {
-    const defaultUrl = "https://www.youtube.com/embed/yf5cEJULZXk";
+    const defaultUrl = "https://www.youtube.com/embed/fO9e9jnhYK8";
     const baseUrl = this.convertYouTubeUrl(this.config.url || defaultUrl);
 
     try {

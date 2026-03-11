@@ -88,10 +88,48 @@ There are several video streams from the ISS on YouTube. To switch to another st
 
 - _24/7 Live from the International Space Station | Dream Trips_
   `"https://www.youtube.com/embed/0FBiyFpV__g"`
-- _Live High-Definition Views from the International Space Station (Official NASA Stream)_ - **Default**
-  `"https://www.youtube.com/embed/yf5cEJULZXk"`
+- _ISS Live Feed by NASA Goddard_ - **Default**
+  `"https://www.youtube.com/embed/fO9e9jnhYK8"`
+- _Live High-Definition Views from the International Space Station (Official NASA Stream)_
+  `"https://www.youtube.com/embed/yf5cEJULZXk"` _(embedding may be disabled by video owner)_
 
 **Side note:** _Basically you can use this module to embed any YouTube video (if the owner didn't disable embedding). You only need to find out the URL of the video and enter it as `url` option. Regular YouTube URLs (`youtube.com/watch?v=…` or `youtu.be/…`) are automatically converted to embed URLs._
+
+## Troubleshooting
+
+### WebGL / SwiftShader error on Raspberry Pi
+
+On Raspberry Pi (and other devices without hardware GPU acceleration) you may see the following error in the MagicMirror log:
+
+```
+Automatic fallback to software WebGL has been deprecated. Please use the --enable-unsafe-swiftshader flag to opt in to lower security guarantees for trusted content.
+```
+
+To fix this, add the `--enable-unsafe-swiftshader` flag to the Electron startup command. Edit your MagicMirror `start script` or `pm2` config and pass the flag:
+
+```bash
+npm start -- --enable-unsafe-swiftshader
+```
+
+Or, if you use `pm2`:
+
+```bash
+pm2 start ecosystem.config.js -- --enable-unsafe-swiftshader
+```
+
+Alternatively, add it via `electronOptions` in `config/config.js`:
+
+```js
+electronOptions: {
+  app: {
+    commandLineSwitchesExtra: [{ switch: "enable-unsafe-swiftshader" }]
+  }
+}
+```
+
+### Video shows "Playback on other websites has been disabled by the video owner"
+
+The default stream URL may have had its embedding disabled by the video owner. Use the `url` option to point to a different stream (see [Other streams](#other-streams) above).
 
 ## Project status
 
