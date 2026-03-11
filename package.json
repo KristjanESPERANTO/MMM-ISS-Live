@@ -36,7 +36,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.39.4",
-    "@eslint/json": "^1.0.1",
+    "@eslint/json": "^1.1.0",
     "@eslint/markdown": "^7.5.1",
     "@stylistic/eslint-plugin": "^5.10.0",
     "commit-and-tag-version": "^12.6.1",
@@ -44,7 +44,7 @@
     "eslint": "^9.39.4",
     "eslint-plugin-import-x": "^4.16.1",
     "globals": "^17.4.0",
-    "lint-staged": "^16.3.2",
+    "lint-staged": "^16.3.3",
     "prettier": "^3.8.1",
     "simple-git-hooks": "^2.13.1"
   }
