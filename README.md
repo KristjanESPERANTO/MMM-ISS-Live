@@ -105,7 +105,7 @@ On Raspberry Pi (and other devices without hardware GPU acceleration) you may se
 Automatic fallback to software WebGL has been deprecated. Please use the --enable-unsafe-swiftshader flag to opt in to lower security guarantees for trusted content.
 ```
 
-To fix this, add `"enable-unsafe-swiftshader"` to the `electronSwitches` array in your `config/config.js`:
+This is a Chromium GPU warning that tends to appear on Pi hardware regardless of configuration. As long as the video is playing fine, it is likely harmless noise. You can try adding `"enable-unsafe-swiftshader"` to `electronSwitches` in your `config/config.js`, but it may not make the message go away completely:
 
 ```js
 let config = {
