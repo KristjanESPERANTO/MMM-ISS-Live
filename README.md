@@ -105,26 +105,14 @@ On Raspberry Pi (and other devices without hardware GPU acceleration) you may se
 Automatic fallback to software WebGL has been deprecated. Please use the --enable-unsafe-swiftshader flag to opt in to lower security guarantees for trusted content.
 ```
 
-To fix this, add the `--enable-unsafe-swiftshader` flag to the Electron startup command. Edit your MagicMirror `start script` or `pm2` config and pass the flag:
-
-```bash
-npm start -- --enable-unsafe-swiftshader
-```
-
-Or, if you use `pm2`:
-
-```bash
-pm2 start ecosystem.config.js -- --enable-unsafe-swiftshader
-```
-
-Alternatively, add it via `electronOptions` in `config/config.js`:
+To fix this, add `"enable-unsafe-swiftshader"` to the `electronSwitches` array in your `config/config.js`:
 
 ```js
-electronOptions: {
-  app: {
-    commandLineSwitchesExtra: [{ switch: "enable-unsafe-swiftshader" }];
-  }
-}
+let config = {
+  // ...
+  electronSwitches: ["enable-unsafe-swiftshader"]
+  // ...
+};
 ```
 
 ### Video shows "Playback on other websites has been disabled by the video owner"

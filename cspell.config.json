@@ -10,6 +10,7 @@
     "livestream",
     "mykle",
     "referrerpolicy",
+    "swiftshader",
     "webpreferences"
   ],
   "ignorePaths": ["node_modules/**", "translations/**"],
