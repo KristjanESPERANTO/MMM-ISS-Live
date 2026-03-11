@@ -101,7 +101,7 @@ There are several video streams from the ISS on YouTube. To switch to another st
 
 On Raspberry Pi (and other devices without hardware GPU acceleration) you may see the following error in the MagicMirror log:
 
-```
+```text
 Automatic fallback to software WebGL has been deprecated. Please use the --enable-unsafe-swiftshader flag to opt in to lower security guarantees for trusted content.
 ```
 
@@ -122,7 +122,7 @@ Alternatively, add it via `electronOptions` in `config/config.js`:
 ```js
 electronOptions: {
   app: {
-    commandLineSwitchesExtra: [{ switch: "enable-unsafe-swiftshader" }]
+    commandLineSwitchesExtra: [{ switch: "enable-unsafe-swiftshader" }];
   }
 }
 ```
