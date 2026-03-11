@@ -28,6 +28,9 @@
     "test": "node --run lint && node --run test:spelling",
     "test:spelling": "cspell ."
   },
+  "simple-git-hooks": {
+    "pre-commit": "npx lint-staged"
+  },
   "lint-staged": {
     "*": [
       "eslint --fix",
