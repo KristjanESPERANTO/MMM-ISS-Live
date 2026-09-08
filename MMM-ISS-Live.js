@@ -5,15 +5,17 @@ Module.register("MMM-ISS-Live", {
     height: "270px",
     width: "480px",
     animationSpeed: 0,
-    updateInterval: 60 * 60 * 1_000,
+    updateInterval: 24 * 60 * 60 * 1_000,
     mute: true,
     webPreferences: "autoplayPolicy=no-user-gesture-required"
   },
 
   start () {
-    this.updateIntervalId = setInterval(() => {
-      this.updateDom(this.config.animationSpeed || 0);
-    }, this.config.updateInterval);
+    if (this.config.updateInterval > 0) {
+      this.updateIntervalId = setInterval(() => {
+        this.updateDom(this.config.animationSpeed || 0);
+      }, this.config.updateInterval);
+    }
   },
 
   stop () {

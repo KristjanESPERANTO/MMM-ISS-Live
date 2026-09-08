@@ -50,7 +50,8 @@ git pull
         url: "https://www.youtube.com/embed/0FBiyFpV__g", // Another video stream
         height: "540px",         // Double height than default
         width: "960px",          // Double width than default
-        mute: true               // Sound disabled
+        mute: true,              // Sound disabled
+        updateInterval: 24 * 60 * 60 * 1_000 // Stream reconnect interval
       }
     },
 ```
