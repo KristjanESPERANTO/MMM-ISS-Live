@@ -56,6 +56,18 @@ git pull
     },
 ```
 
+### Configuration options
+
+| Option           | Type      | Default                                     | Description                                    |
+| ---------------- | --------- | ------------------------------------------- | ---------------------------------------------- |
+| `url`            | `string`  | Default NASA stream                         | YouTube stream URL.                            |
+| `height`         | `string`  | `"270px"`                                   | Video height.                                  |
+| `width`          | `string`  | `"480px"`                                   | Video width.                                   |
+| `animationSpeed` | `number`  | `0`                                         | DOM update animation duration in milliseconds. |
+| `updateInterval` | `number`  | `86_400_000`                                | Stream reconnect interval in milliseconds.     |
+| `mute`           | `boolean` | `true`                                      | Mute the stream when running in Electron.      |
+| `webPreferences` | `string`  | `"autoplayPolicy=no-user-gesture-required"` | Electron webview preferences.                  |
+
 ### Preparing Electron
 
 MagicMirror² disables the `<webview>` tag by default. Enable it by adding the following snippet to your `config/config.js`:
