@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [2.3.2](https://github.com/KristjanESPERANTO/MMM-ISS-Live/compare/v2.3.1...v2.3.2) (2026-09-08)
+
+### Fixed
+
+* clear refresh timer on stop ([10597c1](https://github.com/KristjanESPERANTO/MMM-ISS-Live/commit/10597c1d05a71c7b6ebb10ca80716d07adf6a64a))
+
+### Performance Improvements
+
+* reduce default stream refresh frequency ([4105a7b](https://github.com/KristjanESPERANTO/MMM-ISS-Live/commit/4105a7baa905209c20c1768ba5e72f9ef77139d9))
+
+### Documentation
+
+* document config options ([c8ed423](https://github.com/KristjanESPERANTO/MMM-ISS-Live/commit/c8ed42395b4d3754d823b3954cb2181a3ca0b4e6))
+* update SwiftShader troubleshooting instructions ([7b36deb](https://github.com/KristjanESPERANTO/MMM-ISS-Live/commit/7b36deb6b21adc45818a02a1dce7ab25c066c950))
+
+### Chores
+
+* streamline automated tests workflow ([5c65754](https://github.com/KristjanESPERANTO/MMM-ISS-Live/commit/5c657548e964c1a5334244485caa5d9275dd7619))
+* update devDependencies ([bb6a90b](https://github.com/KristjanESPERANTO/MMM-ISS-Live/commit/bb6a90bf1ead11494f1a8db888cb6fa107792fca))
 ## [2.3.1](https://github.com/KristjanESPERANTO/MMM-ISS-Live/compare/v2.3.0...v2.3.1) (2026-03-11)
 
 
