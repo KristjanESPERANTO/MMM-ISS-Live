@@ -11,9 +11,14 @@ Module.register("MMM-ISS-Live", {
   },
 
   start () {
-    setInterval(() => {
+    this.updateIntervalId = setInterval(() => {
       this.updateDom(this.config.animationSpeed || 0);
     }, this.config.updateInterval);
+  },
+
+  stop () {
+    clearInterval(this.updateIntervalId);
+    this.updateIntervalId = null;
   },
 
   getDom () {
