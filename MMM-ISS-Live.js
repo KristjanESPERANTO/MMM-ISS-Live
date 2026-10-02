@@ -1,4 +1,4 @@
-/* global Log Module */
+/* global ISSLivePlaybackMonitor Log Module */
 
 Module.register("MMM-ISS-Live", {
   defaults: {
@@ -7,7 +7,12 @@ Module.register("MMM-ISS-Live", {
     animationSpeed: 0,
     updateInterval: 24 * 60 * 60 * 1_000,
     mute: true,
+    showErrors: true,
     webPreferences: "autoplayPolicy=no-user-gesture-required"
+  },
+
+  getScripts () {
+    return ["playback-monitor.js"];
   },
 
   start () {
@@ -27,16 +32,35 @@ Module.register("MMM-ISS-Live", {
     const isElectron = this.isElectron();
     const shouldMute = this.getEffectiveMute(isElectron);
     const streamUrl = this.buildStreamUrl(shouldMute);
+    const wrapper = document.createElement("div");
+    wrapper.style.display = "flex";
+    wrapper.style.flexDirection = "column";
+
+    this.statusElement = document.createElement("div");
+    this.statusElement.className = "xsmall dimmed";
+    this.statusElement.style.maxWidth = this.config.width;
+    this.statusElement.hidden = true;
 
     if (this.shouldUseWebview(isElectron)) {
-      return this.createWebview(streamUrl, shouldMute);
+      wrapper.append(this.createWebview(streamUrl, shouldMute));
+    } else {
+      if (isElectron) {
+        Log.warn(`${this.name} falling back to iframe because webview is disabled or unsupported.`);
+      }
+      wrapper.append(this.createIframe(streamUrl));
     }
 
-    if (isElectron) {
-      Log.warn(`${this.name} falling back to iframe because webview is disabled or unsupported.`);
-    }
+    wrapper.append(this.statusElement);
 
-    return this.createIframe(streamUrl);
+    return wrapper;
+  },
+
+  showStatus (text) {
+    if (text) {
+      Log.error(`${this.name} ${text}`);
+    }
+    this.statusElement.textContent = text;
+    this.statusElement.hidden = !text || !this.config.showErrors;
   },
 
   // --- URL handling ---
@@ -82,6 +106,7 @@ Module.register("MMM-ISS-Live", {
       url.searchParams.set("autoplay", "1");
       url.searchParams.set("playsinline", "1");
       url.searchParams.set("rel", "0");
+      url.searchParams.set("enablejsapi", "1");
       url.searchParams.set("mute", shouldMute
         ? "1"
         : "0");
@@ -129,6 +154,7 @@ Module.register("MMM-ISS-Live", {
 
     this.attachAudioMuteHandler(webview, shouldMute);
     this.attachWebviewFallbackHandlers(webview, streamUrl);
+    ISSLivePlaybackMonitor.watchWebview(webview, (text) => this.showStatus(text));
 
     return webview;
   },
@@ -140,6 +166,7 @@ Module.register("MMM-ISS-Live", {
     iframe.setAttribute("allow", "autoplay; fullscreen; picture-in-picture; encrypted-media");
     iframe.setAttribute("referrerpolicy", "strict-origin-when-cross-origin");
     iframe.src = streamUrl;
+    ISSLivePlaybackMonitor.watchIframe(iframe, (text) => this.showStatus(text));
 
     return iframe;
   },

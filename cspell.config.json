@@ -3,6 +3,7 @@
   "language": "en",
   "words": [
     "autoplay",
+    "enablejsapi",
     "httpreferrer",
     "Kristjan",
     "playsinline",
@@ -10,8 +11,10 @@
     "livestream",
     "mykle",
     "referrerpolicy",
+    "subreason",
     "swiftshader",
-    "webpreferences"
+    "webpreferences",
+    "xsmall"
   ],
   "ignorePaths": ["node_modules/**", "translations/**"],
   "dictionaries": ["node"]
