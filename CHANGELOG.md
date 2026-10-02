@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [2.4.0](https://github.com/KristjanESPERANTO/MMM-ISS-Live/compare/v2.3.2...v2.4.0) (2026-10-02)
+
+### Added
+
+* show clear message when YouTube player does not play ([59e4f47](https://github.com/KristjanESPERANTO/MMM-ISS-Live/commit/59e4f47e8fce5486868ef6ae274c6637083e2465))
+
+### Documentation
+
+* clarify SwiftShader warning guidance ([37bb623](https://github.com/KristjanESPERANTO/MMM-ISS-Live/commit/37bb62315e8eb4fad73f05b608344a00e42943b7))
+* switch to working stream URL ([ff864d0](https://github.com/KristjanESPERANTO/MMM-ISS-Live/commit/ff864d076f59933049be8e5613ab68a28349d43c))
+
+### Chores
+
+* update devDependencies ([4366bc6](https://github.com/KristjanESPERANTO/MMM-ISS-Live/commit/4366bc6b579d7dd6f1243498c4574e3a0c06bb2a))
+
+### Tests
+
+* cover URL and playback behavior ([ec490aa](https://github.com/KristjanESPERANTO/MMM-ISS-Live/commit/ec490aa5287e532298f856e94e86ee6d7635392e))
+
 ## [2.3.2](https://github.com/KristjanESPERANTO/MMM-ISS-Live/compare/v2.3.1...v2.3.2) (2026-09-08)
 
 ### Fixed
