@@ -47,7 +47,7 @@ git pull
       header: "ISS Live Stream", // With header
       position: "bottom_left",
       config: {
-        url: "https://www.youtube.com/embed/0FBiyFpV__g", // Another video stream
+        url: "https://www.youtube.com/embed/fO9e9jnhYK8", // Default stream
         height: "540px",         // Double height than default
         width: "960px",          // Double width than default
         mute: true,              // Sound disabled
@@ -60,7 +60,7 @@ git pull
 
 | Option           | Type      | Default                                     | Description                                                                           |
 | ---------------- | --------- | ------------------------------------------- | ------------------------------------------------------------------------------------- |
-| `url`            | `string`  | Default NASA stream                         | YouTube stream URL.                                                                   |
+| `url`            | `string`  | `https://www.youtube.com/embed/fO9e9jnhYK8` | YouTube stream URL.                                                                   |
 | `height`         | `string`  | `"270px"`                                   | Video height.                                                                         |
 | `width`          | `string`  | `"480px"`                                   | Video width.                                                                          |
 | `animationSpeed` | `number`  | `0`                                         | DOM update animation duration in milliseconds.                                        |
@@ -98,16 +98,7 @@ If the tag stays disabled, the module automatically falls back to the iframe ren
 
 ### Other streams
 
-There are several video streams from the ISS on YouTube. To switch to another stream, you need to set the URL option as in the customized example above.
-
-- _24/7 Live from the International Space Station | Dream Trips_
-  `"https://www.youtube.com/embed/0FBiyFpV__g"`
-- _ISS Live Feed by NASA Goddard_ - **Default**
-  `"https://www.youtube.com/embed/fO9e9jnhYK8"`
-- _Live High-Definition Views from the International Space Station (Official NASA Stream)_
-  `"https://www.youtube.com/embed/yf5cEJULZXk"` _(embedding may be disabled by video owner)_
-
-**Side note:** _Basically you can use this module to embed any YouTube video (if the owner didn't disable embedding). You only need to find out the URL of the video and enter it as `url` option. Regular YouTube URLs (`youtube.com/watch?v=…` or `youtu.be/…`) are automatically converted to embed URLs._
+The default stream is _Live 4K video of Earth and space_ by Sen, filmed from cameras on the ISS. You can use another YouTube video by setting its URL in the `url` option, provided its owner allows embedding. Regular YouTube URLs (`youtube.com/watch?v=…` or `youtu.be/…`) are automatically converted to embed URLs.
 
 ## Troubleshooting
 
@@ -131,7 +122,7 @@ let config = {
 
 ### Video shows "Playback on other websites has been disabled by the video owner"
 
-The default stream URL may have had its embedding disabled by the video owner. Use the `url` option to point to a different stream (see [Other streams](#other-streams) above).
+If you use a custom stream URL, its owner may have disabled embedding. Try the default stream or choose another video that allows embedding.
 
 ## Project status
 
