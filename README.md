@@ -104,13 +104,13 @@ The default stream is _Live 4K video of Earth and space_ by Sen, filmed from cam
 
 ### WebGL / SwiftShader error on Raspberry Pi
 
-On Raspberry Pi (and other devices without hardware GPU acceleration) you may see the following error in the MagicMirror log:
+On Raspberry Pi and other systems where hardware acceleration is unavailable or disabled, Chromium may fall back to software WebGL and log this warning:
 
 ```text
 Automatic fallback to software WebGL has been deprecated. Please use the --enable-unsafe-swiftshader flag to opt in to lower security guarantees for trusted content.
 ```
 
-To fix this, add `"enable-unsafe-swiftshader"` to the `electronSwitches` array in your `config/config.js`:
+If the video renders correctly, this warning is usually harmless and can be ignored. To explicitly allow software WebGL, you can add `"enable-unsafe-swiftshader"` to `electronSwitches` in your `config/config.js`. This lowers security guarantees for trusted content and may not remove every related warning:
 
 ```js
 let config = {
