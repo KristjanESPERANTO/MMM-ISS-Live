@@ -25,8 +25,9 @@
     "lint:fix": "eslint --fix && prettier . --write",
     "prepare": "simple-git-hooks || true",
     "release": "commit-and-tag-version --config ./changelog.config.js",
-    "test": "node --run lint && node --run test:spelling",
-    "test:spelling": "cspell ."
+    "test": "node --run lint && node --run test:unit && node --run test:spelling",
+    "test:spelling": "cspell .",
+    "test:unit": "node --test"
   },
   "simple-git-hooks": {
     "pre-commit": "npx lint-staged"
